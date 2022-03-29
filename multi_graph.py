@@ -69,7 +69,7 @@ for train in new_train:
 # G = nx.from_pandas_edgelist(df=df, source='f1', target='f2', edge_attr='weight')
 #
 # nodes = len(feature_1)
-# print("长度是{}", nodes)
+# print("{}", nodes)
 
 #useful code
 pos = nx.spring_layout(G, k=10)
@@ -90,8 +90,8 @@ pos = nx.spring_layout(G, k=10)
 #         G.add_weighted_edges_from(train[0], train[1], train[2])
 #         #print(train[0], train[1], train[2])
 
-print("图的边共有：{}".format(nx.number_of_edges(G)))    # print number of edge
-print("图的点共有：{}".format(nx.number_of_nodes(G)))    # print number of node
+print("graph has：{} deges".format(nx.number_of_edges(G)))    # print number of edge
+print("graph has：{} nodes".format(nx.number_of_nodes(G)))    # print number of node
 # print("The subgraphs of the graph：{}".format(nx.number_connected_components(G)))    # Print the number of connected subgraphs of the graph, Directed graph cannot be used
 
 # print degree of node 10
