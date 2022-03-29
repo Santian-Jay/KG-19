@@ -26,7 +26,7 @@ print(A)
 
 # Convert a matrix into a 2D array to get values
 arr_A = np.array(A)
-print("一个元素: ", arr_A[0][1])
+print("an element: ", arr_A[0][1])
 
 print(G.degree('e'))
 
