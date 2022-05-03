@@ -2,6 +2,8 @@ relationWithHT = {}
 inverse = {}
 inverseIndex = 0
 strIndex = []
+threshold = 0.95
+total = {}
 
 """
 Determine if new data is already included in the dataset
@@ -24,6 +26,7 @@ for index in range(entryNumber):
     head, tile, relation = content.strip().split()
     if relation not in relationWithHT:
         strIndex.append(str(relation))
+        total[relation] = 0
         relationWithHT[relation] = []
     relationWithHT[relation].append((head, tile))
 
@@ -43,11 +46,30 @@ for i in range(len(relationWithHT)):
                         list1 = [tempList, strIndex[i], new, strIndex[round]]
                         list2 = [new, strIndex[round], tempList, strIndex[i]]
                         if not checkRepeat(list1, list2):
-                            inverse[inverseIndex] = []
-                            inverse[inverseIndex].append((tempList, strIndex[i], new, strIndex[round]))
+                            # inverse[inverseIndex].append((tempList, strIndex[i], new, strIndex[round]))
+                            if len(inverse) != 0:
+                                for l in range(len(inverse)):
+                                    if [(strIndex[i], strIndex[round])] != inverse[l]:
+                                        inverse[inverseIndex] = []
+                                        inverse[inverseIndex].append((strIndex[i], strIndex[round]))
+                            else:
+                                inverse[inverseIndex] = []
+                                inverse[inverseIndex].append((strIndex[i], strIndex[round]))
+                            total[strIndex[i]] += 1
+                            total[strIndex[round]] += 1
                             inverseIndex += 1
                 round += 1
 
+fInverse = open("inverse.txt", "w")
+fInverse.write("%d\n"%(len(inverse)))
 
-for i in range(len(inverse)):
-    print(inverse[i])
+for n in range(len(inverse)):
+    h = inverse[n][0][0]
+    t = inverse[n][0][1]
+    hRate = total[h] / len(relationWithHT[h])
+    tRate = total[t] / len(relationWithHT[t])
+    print(hRate, tRate)
+    fInverse.write("%s\t%s\n"%(h, t))
+    if hRate >= threshold and tRate >= threshold:
+        print("relation {} and {} can be inverse".format(h, t))
+
