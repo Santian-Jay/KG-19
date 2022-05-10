@@ -13,7 +13,6 @@ file_fact = f"{data_folder_path}/train2id.txt"
 new_entity, new_relation, new_train, feature_1, feature_2, weight, train_1, train_node = [], [], [], [], [], [], [], []
 fact_string_list = []
 
-
 def save_files():
     update_from_file()
 
@@ -46,11 +45,11 @@ def update_from_file():
 
     for entity in new_entity:
         if len(entity) != 1:
-            entity_keys[int(entity[1])] = entity[0]  # ent_dict.append(int(entity[1]), str(entity[0]))
+            entity_keys[int(entity[1])] = entity[0]  #ent_dict.append(int(entity[1]), str(entity[0]))
 
     for relation in new_relation:
         if len(relation) != 1:
-            relation_keys[int(relation[1])] = relation[0]  # rel_dict.append(int(relation[1]), str(relation[0]))
+            relation_keys[int(relation[1])] = relation[0]  #rel_dict.append(int(relation[1]), str(relation[0]))
 
     for train in new_train:
         if len(train) != 1:
@@ -134,23 +133,23 @@ def sub_window():
     selectDatabase.set("Select your database")
 
     # search bar_1
-    # searchBox = Entry(sub_window, width=100)
-    # searchBox.place(x=570, y=30, width=250, height=35)
+    #searchBox = Entry(sub_window, width=100)
+    #searchBox.place(x=570, y=30, width=250, height=35)
     # searchBox.pack(padx=5, pady=15, side=LEFT)
-    # searchBox.insert(0, "Entity")
+    #searchBox.insert(0, "Entity")
 
     # search bar_2
-    # searchBox = Entry(sub_window, width=100)
-    # searchBox.place(x=830, y=30, width=250, height=35)
+    #searchBox = Entry(sub_window, width=100)
+    #searchBox.place(x=830, y=30, width=250, height=35)
     # searchBox.pack(padx=5, pady=15, side=LEFT)
-    # searchBox.insert(0, "Relation")
+    #searchBox.insert(0, "Relation")
 
     def beginsearch():
         result = "result"
 
     # button of batch search
-    # search_button = Button(sub_window, text="Batch search", command=beginsearch)
-    # search_button.place(x=1100, y=30, width=100, height=35)
+    #search_button = Button(sub_window, text="Batch search", command=beginsearch)
+    #search_button.place(x=1100, y=30, width=100, height=35)
     # searchButton.pack(padx=5, pady=15, side=LEFT)
 
     # frame for table
@@ -180,25 +179,30 @@ def sub_window():
     insert_data()
 
     tv.place(x=0, y=0, width=1380, height=799)
-
-    # tv.pack()
+    #tv.pack()
 
     def get_data():
         item = tv.get_children()[0]
         print(tv.item(item, "values"))
 
     # button of statistics and visualization
-    # sub_window.protocol('WM_DELETE_WINDOW', lambda: [sub_window.destroy(), enter()])
-    statisticsPageButton = Button(sub_window, text="Statistics", background="grey", activebackground="white", font=f3)
+    #sub_window.protocol('WM_DELETE_WINDOW', lambda: [sub_window.destroy(), enter()])
+    statisticsPageButton = Button(sub_window, text="Statistics", activebackground="white", font=f3)
     statisticsPageButton.place(x=0, y=810, width=170, height=90)
 
-    visualizationPageButton = Button(sub_window, text="Visualisation", font=f3,
+    visualizationPageButton = Button(sub_window, text="Visualisation", font=f3, background="grey",
                                      command=lambda: [sub_window.destroy(), enter()])
     visualizationPageButton.place(x=0, y=710, width=170, height=90)
 
+    #statisticsPageButton = Button(sub_window, text="Statistics", background="grey", activebackground="white",
+                                  #command=beginsearch)
+    #statisticsPageButton.place(x=0, y=800, width=150, height=80)
 
-    sub_window.mainloop()
+    #visualizationPageButton = Button(sub_window, text="Visualisation",
+                                     #command=lambda: [sub_window.destroy(), enter()])
+    #visualizationPageButton.place(x=0, y=710, width=150, height=80)
 
+    #sub_window.mainloop()
 
 # ====================================main window==============================================
 
@@ -214,21 +218,18 @@ def enter():
     def create_Window():
         def get_relation():
             global file_relation
-            file_relation = filedialog.askopenfile(initialdir=data_folder_path, filetypes=[("text files", "*.txt")],
-                                                   mode='r')
+            file_relation = filedialog.askopenfile(initialdir=data_folder_path, filetypes=[("text files", "*.txt")], mode='r')
             # Add success checks
             file_relation = file_relation.name
 
         def get_entity():
             global file_entity
-            file_entity = filedialog.askopenfile(initialdir=data_folder_path, filetypes=[("text files", "*.txt")],
-                                                 mode='r')
+            file_entity = filedialog.askopenfile(initialdir=data_folder_path, filetypes=[("text files", "*.txt")], mode='r')
             file_entity = file_entity.name
 
         def get_fact():
             global file_fact
-            file_fact = filedialog.askopenfile(initialdir=data_folder_path, filetypes=[("text files", "*.txt")],
-                                               mode='r')
+            file_fact = filedialog.askopenfile(initialdir=data_folder_path, filetypes=[("text files", "*.txt")], mode='r')
             file_fact = file_fact.name
 
         sfwindow = tk.Toplevel(window)
@@ -254,8 +255,7 @@ def enter():
         factButton.place(x=28, y=240, width=120, height=25)
         cancelButton = tk.Button(sfwindow, text="cancel")
         cancelButton.place(x=600, y=450, width=120, height=25)
-        saveButton = tk.Button(sfwindow, text="Save", command=lambda: save_files_g(
-            graphFrame))  # command=lambda: multi_graph.draw_graph(new_entity, new_relation, new_train)
+        saveButton = tk.Button(sfwindow, text="Save", command=lambda: save_files_g(graphFrame)) #command=lambda: multi_graph.draw_graph(new_entity, new_relation, new_train)
         saveButton.place(x=770, y=450, width=120, height=25)
 
     FilesButton = tk.Button(window, text="Select files", font=f1, command=create_Window)
@@ -321,8 +321,8 @@ def enter():
     search_button = Button(subgraphFrame, text="Batch search", command=beginsearch, font=f1)
     search_button.pack(fill=X, pady=15, padx=30)
 
-    # RangeButton1 = tk.Radiobutton(subgraphFrame, text="No. of Entities", variable=var, value="Entities", font=f1)
-    # RangeButton1.pack(fill=X, pady=15)
+    #RangeButton1 = tk.Radiobutton(subgraphFrame, text="No. of Entities", variable=var, value="Entities", font=f1)
+    #RangeButton1.pack(fill=X, pady=15)
 
     subgraphOptions = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
 
@@ -330,7 +330,7 @@ def enter():
     Checkbutton(subgraphFrame, text="No. of Entities", variable=var1, font=f1).pack(fill=X, pady=15, padx=30)
     selectNumEntities = ttk.Combobox(subgraphFrame, values=subgraphOptions, width=1, font=f1)
     selectNumEntities.pack()
-    # selectDatabase.set("Select your database")
+    #selectDatabase.set("Select your database")
 
     var2 = IntVar()
     Checkbutton(subgraphFrame, text="Hop Count", variable=var2, font=f1).pack(fill=X, pady=15, padx=30)
@@ -342,10 +342,10 @@ def enter():
     selectNumSubGraphs = ttk.Combobox(subgraphFrame, values=subgraphOptions, width=1, font=f1)
     selectNumSubGraphs.pack()
 
-    # RangeButton2 = tk.Radiobutton(subgraphFrame, text="Hop Count", variable=var, value="Count", font=f1)
-    # RangeButton2.pack(fill=X, pady=15)
-    # RangeButton3 = tk.Radiobutton(subgraphFrame, text="No. of Subgraphs", variable=var, value="Entities", font=f1)
-    # RangeButton3.pack(fill=X, pady=15)
+    #RangeButton2 = tk.Radiobutton(subgraphFrame, text="Hop Count", variable=var, value="Count", font=f1)
+    #RangeButton2.pack(fill=X, pady=15)
+    #RangeButton3 = tk.Radiobutton(subgraphFrame, text="No. of Subgraphs", variable=var, value="Entities", font=f1)
+    #RangeButton3.pack(fill=X, pady=15)
 
     # frame for subGraphs
     # subgraphFrame = Frame(window, highlightbackground="black", highlightthickness=1)
